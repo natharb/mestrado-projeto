@@ -1,0 +1,188 @@
+<html>
+
+<head>
+</head>
+
+<body>
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-header">
+          <h1 id="typography">Sobre a pesquisa</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="bs-component">
+          <p class="lead" align="Justify">Sabemos que o desempenho de sistemas de reconhecimento de fala é afetado pelo sotaque do usuário, visto que a pronúncia
+            de uma frase é alterada de acordo com a região de origem do falante. O sotaque que percebemos (escutamos) refere-se
+            às características prosódicas e fonéticas, por exemplo, entonação, duração e segmentos definidos pelo país ou
+            região de um indivíduo. Ele pode ser também ser entendido como os traços melódicos da língua. Diante disso, o
+            reconhecimento de sotaque permite pré-selecionar modelos linguísticos, acústicos e lexicais adequados a cada
+            região do falante por meio da limitação do espaço de características, aumentando potencialmente o desempenho
+            do sistema de reconhecimento automático de locutor. As informações aqui obtidas serão utilizada estritamente
+            em pesquisas na área de reconhecimento de fala. Esse projeto visa obter grande número de amostras de voz para
+            os diferentes sotaques brasileiros, que serão utilizadas no projeto de Mestrado em Engenharia Elétrica na Universidade
+            Estadual de Campinas (Unicamp).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bs-docs-section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-header">
+            <h1 id="typography">Sistema Biométrico</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="bs-component">
+            <img src="../../assets/figura.jpg" class="img-responsive" alt="Imagem Responsiva"/>
+          </div>
+          <p class="lead" align="Justify">Na fase da captura, os dados são coletados por meio de um dispositivo que transforma o sinal mecânico (voz) em sinal elétrico e convertidos para o modelo digital, 
+              que posteriormente é processado por filtros, amostrado e quantizado em um sistema A/D. 
+              A fase de extração de características consiste em processar o sinal e encontrar os melhores parâmetros estatísticos que o caracterizam, sendo conhecidos como
+              Mel Frequency Cepstral Coefficient - (MFCC).
+              Após essa etapa, o sistema irá modelar estatísticamente o vetor de características por meio de uma técnica GMM (Gaussian Mixture Models). Resumidamente, 
+              as características inerentes ao sotaque do locutor são modeladas a partir de uma combinação linear de funções gaussianas multidimencionais.
+              No contexto desse trabalho, o banco de dados contém amostras de voz que representam as variações fonéticas dos sotaques brasileiros. Essa ferramenta Web será utilizada para este fim,
+              de forma a alcançar a maior quantidade de pessoas dispostas a colaborar com a pesquisa e assim, incrementar
+              o banco de dados da pesquisa.
+              
+              
+
+             </p>
+        </div>
+      </div>
+    </div>
+
+  <div class="bs-docs-section">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-header">
+          <h1 id="tables">Sotaques Brasileiros </h1>
+        </div>
+
+        <div class="bs-component">
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Sotaques</th>
+                <th>Regiões</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td> Caipira </td>
+                <td>Interior do estado de São Paulo, sul de Goiás, norte do Paraná, parte do Mato Grosso e Mato Grosso do sul,
+                  sul de Minas Gerais e Triângulo Mineiro </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Costa Norte</td>
+                <td>Ceará, Piauí e em parte do Maranhão e Rio Grande do Norte.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Fluminense</td>
+                <td>Região sul, noroeste e norte do estado do Rio de Janeiro, Espírito Santo, e com falantes em regiões de Minas
+                  Gerais, extremo leste de São Paulo e extremo sul da Bahia</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Gaúcho</td>
+                <td>Rio Grande do Sul.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Mineiro</td>
+                <td>Região central e leste de Minas Gerais</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Nordestino</td>
+                <td>Pernambuco, Sergipe, Alagoas, Paraíba, Rio Grande do Norte, na porção sul do Ceará, algumas regiões da Bahia,
+                  do Piauí e do Maranhão.</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Nortista</td>
+                <td>Todos os estados da bacia do Amazonas. Também Rondônia, norte de Mato Grosso, Tocantins, sudoeste do Maranhão,
+                  sudeste do Pará.</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Paulistano</td>
+                <td>Macro metrópole de São Paulo.</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Sertanejo</td>
+                <td>Mato Grosso, centro-norte de Goiás e noroeste do Mato Grosso do Sul.</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Sulista</td>
+                <td>Paraná, em praticamente todo o estado de Santa Catarina, no noroeste do Rio Grande do Sul e no extremo-sul
+                  do estado de São Paulo.</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>Florianopolitano</td>
+                <td>Região Metropolitana de Florianópolis e em regiões do litoral de Santa Catarina.</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>Carioca</td>
+                <td>Rio de Janeiro e região metropolitana.</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>Brasiliense</td>
+                <td>Brasília e na sua área metropolitana.</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>Recifense</td>
+                <td>Recife e região metropolitana.</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>Soteropolitano</td>
+                <td>Salvador e região metropolitana.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /example -->
+      </div>
+
+    </div>
+  </div>
+</body>
+
+<footer>
+  <div class="row">
+    <div class="col-lg-12">
+      <p>Made by
+        <a rel="nofollow">Nathália Batista</a>. Contact her at
+        <a>nathbapt@decom.fee.unicamp.br</a>
+      </p>
+      <p>Code released under the
+        <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
+      <p>Based on
+        <a href="https://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from
+        <a href="https://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from
+        <a href="https://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+    </div>
+  </div>
+</footer>
+
+</html>

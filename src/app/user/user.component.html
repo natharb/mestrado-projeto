@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<!-- Containers
+      ================================================== -->
+
+
+<html ng-app="userApp">
+
+<head>
+</head>
+
+<body ng-controller="userController">
+
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-header">
+          <h1 id="containers">Instruções para Gravação dos Áudios</h1>
+        </div>
+        <div class="bs-component">
+          <div class="jumbotron">
+            <ul>
+              <li>
+                <h3 align="Justify">Para o correto funcionamento desta aplicação, utilizar o Google Chrome.</h3>
+              </li>
+              <li>
+                <h3 align="Justify">O usuário deve estar próximo o suficiente para que o microfone do notebook/desktop capte a voz adequadamente.</h3>
+              </li>
+              <li>
+                <h3 align="Justify">Ao realizar a gravação, escute-a e verifique se a frase foi pronunciada corretamente e a voz está audível.
+                  Caso contrário, tente gravar novamente.</h3>
+              </li>
+              <li>
+                <h3 align="Justify">As informações solicitadas abaixo devem ser preenchidas corretamente, pois a partir delas será possível identificar
+                  e classificar cada áudio gravado.</h3>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="page-header">
+          <h1 id="forms">Informações do Locutor</h1>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="col-lg-6">
+        <div class="well bs-component">
+          <form class="form" ng-submit="submitUserForm()" class="form-horizontal" novalidate>
+            <fieldset>
+              <legend></legend>
+              <div class="form-group">
+                <label for="inputAge" class="col-lg-2 control-label">Idade</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" id="inputAge" ng-model="user.age" placeholder="Idade">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Estado</label>
+                <div class="col-lg-10">
+                  <select class="form-control" ng-model="user.state" id="state">
+                    <option>Acre</option>
+                    <option>Amapá</option>
+                    <option>Amazonas</option>
+                    <option>Alagoas</option>
+                    <option>Bahia</option>
+                    <option>Ceará</option>
+                    <option>Distrito Federal</option>
+                    <option>Espírito Santo</option>
+                    <option>Goiás</option>
+                    <option>Maranhão</option>
+                    <option>Mato Grosso</option>
+                    <option>Mato Grosso do Sul</option>
+                    <option>Minas Gerais</option>
+                    <option>Paraíba</option>
+                    <option>Paraná</option>
+                    <option>Pernambuco</option>
+                    <option>Piauí</option>
+                    <option>Rio Grande do Norte</option>
+                    <option>Rio Grande do Sul</option>
+                    <option>Rondônia</option>
+                    <option>Roraima </option>
+                    <option>Santa Catarina</option>
+                    <option>Sergipe</option>
+                    <option>Tocantins</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="textArea" class="col-lg-2 control-label">Cidade </label>
+                <div class="col-lg-10">
+                  <textarea class="form-control" ng-model="user.city" rows="1" id="city"></textarea>
+                  <span class="help-block">Não necessariamente a cidade onde reside ou nasceu, mas de onde seu sotaque é caracterizado.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-2 control-label">Sexo</label>
+                <div class="col-lg-10">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" ng-model="user.gender" id="gender" value="option1" checked=""> Feminino
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" ng-model="user.gender" id="gender" value="option2"> Masculino
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Grau de Escolaridade</label>
+                <div class="col-lg-10">
+                  <select class="form-control" ng-model="user.school" id="degree">
+                    <option>Ensino Fundamental</option>
+                    <option>Ensino Fundamental Incompleto</option>
+                    <option>Ensino Médio</option>
+                    <option>Ensino Médio Incompleto</option>
+                    <option>Ensino Superior</option>
+                    <option>Ensino Superior Incompleto</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputDate" class="col-lg-2 control-label">Data </label>
+                <div class="col-lg-10">
+                  <input type="date" class="form-control" ng-model="user.data" id="data">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                  <input type="submit" class="btn btn-primary" value="Salvar dados" />
+                  <input type="reset" class="btn btn-primary" ng-click="resetForm()" value="Limpar Dados" />
+                </div>
+              </div>
+            </fieldset>
+          </form>
+          <script>
+            //1. create app module 
+            var userApp = angular.module('userApp', []);
+
+            //2. create controller
+            userApp.controller("userController", function ($scope, $http) {
+
+              //3. attach originalStudent model object
+              $scope.originalUser = {
+                inputAge: 'Bond',
+                state: 'Bahia',
+                city: 'paulo afonso',
+                gender: 'male',
+                degree: 'online',
+                data: new Date('01/31/1980')
+              };
+
+              //4. copy originalStudent to student. student will be bind to a form 
+              $scope.user = angular.copy($scope.originalUser);
+
+              //5. create submitStudentForm() function. This will be called when user submits the form
+              $scope.submitUserForm = function () {
+
+                var onSuccess = function (data, status, headers, config) {
+                  alert('Salvo com sucesso.');
+                };
+
+                var onError = function (data, status, headers, config) {
+                  alert('Ocorreu um erro.');
+                }
+
+                $http.post('/user/submitData', { user: $scope.user })
+                  .success(onSuccess)
+                  .error(onError);
+
+              };
+
+              //6. create resetForm() function. This will be called on Reset button click.  
+              $scope.resetForm = function () {
+                $scope.student = angular.copy($scope.OriginalStudent);
+              };
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<footer>
+  <div class="row">
+    <div class="col-lg-10">
+      <p>Made by
+        <a rel="nofollow">Nathália Batista</a>. Contact her at
+        <a>nathbapt@decom.fee.unicamp.br</a>
+      </p>
+      <p>Code released under the
+        <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
+      <p>Based on
+        <a href="https://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from
+        <a href="https://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from
+        <a href="https://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+
+    </div>
+  </div>
+
+</footer>
+
+</html>
