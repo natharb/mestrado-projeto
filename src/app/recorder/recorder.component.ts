@@ -4,9 +4,10 @@ import { ElementRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Http,Response,Headers,RequestOptions, URLSearchParams } from "@angular/http";
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth'
+import { AngularFireDatabase } from 'angularfire2/database'
+import * as firebase from 'firebase/app'
+import 'firebase/storage'
 import { environment } from '../../environments/environment';
 import { Observable } from "rxjs";
 
@@ -24,7 +25,8 @@ export class RecorderComponent implements OnInit {
   isOn:boolean;
   isOff:boolean;
 
-  constructor(  ) { }
+  constructor(
+  ) {}
 
   ngOnInit() {
     this.isOn = false;

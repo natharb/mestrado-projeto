@@ -24,8 +24,7 @@
                 </h3>
                 <button class="btn btn-default btn-sm" id = "record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
                 <button class="btn btn-default btn-sm" id = "stop1" (click)="stop('1',this);" [ngClass]='{disabled: isOff}'>Parar</button>
-                <button class="btn btn-default btn-sm" id= "salvar1">Salvar</button>
-                <progress value="0" max="100" id="uploader"></progress>
+                <input type="button" class="btn btn-default btn-sm" id= "salvar1" value="Salvar"/>
                 <ul id="recordingslist1"></ul>                
             </div>
             <div>

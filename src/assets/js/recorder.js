@@ -129,6 +129,7 @@
                             var audioBlob = new Blob([dataview], { type: type });
 
                             self.postMessage({ command: 'exportWAV', data: audioBlob });
+                            
                         }
 
                         function getBuffer() {
@@ -137,6 +138,7 @@
                                 buffers.push(mergeBuffers(recBuffers[channel], recLength));
                             }
                             self.postMessage({ command: 'getBuffer', data: buffers });
+                            console.log(data);
                         }
 
                         function clear() {
