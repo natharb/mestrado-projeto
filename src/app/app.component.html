@@ -1,30 +1,540 @@
-<div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="https://www.fee.unicamp.br/" class="navbar-brand">Unicamp</a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li>
-              <a routerLink="/about">Sobre a Pesquisa</a>
-            </li>
-            <li>
-              <a routerLink="/user"><i class="fa fa-user"></i> Intruções ao Locutor</a>
-            </li>
-            <li>
-              <a routerLink="/recorder"><i class="fa fa-microphone"></i> Gravação</a>
-            </li>
-          </ul>
+<!-- Header -->
+<header class="masthead">
+  <div class="container">
+    <div class="intro-text">
+      <div class="intro-lead-in"></div>
+      <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#sobre">Início</a>
+    </div>
+  </div>
+</header>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+  <div class="container">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav text-uppercase ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#sobre">Sobre a Pesquisa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#instrucoes">Intruções ao Locutor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#informacoes">Dados do Locutor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#gravacao">Frases para Gravação</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Services -->
+<section id="sobre">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading text-uppercase">Sobre a Pesquisa</h2>
+        <h3 class="section-subheading text-muted" >Sabemos que o desempenho de sistemas de reconhecimento de fala é afetado pelo sotaque do usuário, visto que a pronúncia
+          de uma frase é alterada de acordo com a região de origem do falante. O sotaque que percebemos (escutamos) refere-se
+          às características prosódicas e fonéticas, por exemplo, entonação, duração e segmentos definidos pelo país ou região
+          de um indivíduo. Ele pode ser também ser entendido como os traços melódicos da língua. Diante disso, o reconhecimento
+          de sotaque permite pré-selecionar modelos linguísticos, acústicos e lexicais adequados a cada região do falante
+          por meio da limitação do espaço de características, aumentando potencialmente o desempenho do sistema de reconhecimento
+          automático de locutor. As informações aqui obtidas serão utilizada estritamente em pesquisas na área de reconhecimento
+          de fala. Esse projeto visa obter grande número de amostras de voz para os diferentes sotaques brasileiros, que
+          serão utilizadas no projeto de Mestrado em Engenharia Elétrica na Universidade Estadual de Campinas (Unicamp).</h3>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x text-primary"></i>
+          <i class="fa fa-bullseye fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Biometria</h4>
+        <p class="text-muted"> Bio (vida) + metria (medida) é o estudo estatístico das características físicas ou comportamentais dos seres vivos.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x text-primary"></i>
+          <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Reconhecimento de Voz</h4>
+        <p class="text-muted">Permitem que computadores equipados com microfones interpretem a fala humana, por exemplo, para transcrição ou como método de comando por voz.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x text-primary"></i>
+          <i class="fa fa-microchip fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Processamento de Sinais</h4>
+        <p class="text-muted">Consiste na análise e/ou modificação de sinais utilizando teoria fundamental, aplicações e algoritmos, de forma a extrair informações dos mesmos e/ou torná-los mais apropriados para alguma aplicação específica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light" id="instrucoes">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading text-uppercase">Instruções de Gravação</h2>
+        <h3 class="section-subheading text-muted">Seguir corretamente as intruções para a correta obtenção das amostras de voz.</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="timeline">
+          <li>
+            <div class="timeline-image">
+              <img class="rounded-circle img-fluid" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Instrução 1</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Utilizar o browser Google Chrome.</p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-inverted">
+            <div class="timeline-image">
+              <img class="rounded-circle img-fluid" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Instrução 2</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">O usuário deve estar próximo o suficiente para que o microfone do notebook/desktop capte a voz adequadamente.</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="timeline-image">
+              <img class="rounded-circle img-fluid" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Instrução 3</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Ao realizar a gravação, escute-a e verifique se a frase foi pronunciada corretamente e a voz está audível.
+                  Caso contrário, tente gravar novamente.</p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-inverted">
+            <div class="timeline-image">
+              <img class="rounded-circle img-fluid" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>Instrução 4</h4>
+                <h4 class="subheading"></h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">As informações solicitadas abaixo devem ser preenchidas corretamente, pois a partir delas será possível identificar
+                  e classificar cada áudio gravado.</p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-inverted">
+            <div class="timeline-image">
+              <h4>Informe
+                <br>seus dados
+                <br>a seguir!</h4>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="informacoes">
+  <div class="container">
+    <h2 class="text-center">Dados do Locutor</h2>
+    <hr class="star-primary">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <form name="sentMessage" id="contactForm" novalidate>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Idade</label>
+              <input class="form-control" id="idade" type="text" placeholder="Idade" required data-validation-required-message="Por favor, informe sua idade.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Estado</label>
+              <select class="form-control" id="estado">
+                <option>Acre</option>
+                <option>Amapá</option>
+                <option>Amazonas</option>
+                <option>Alagoas</option>
+                <option>Bahia</option>
+                <option>Ceará</option>
+                <option>Distrito Federal</option>
+                <option>Espírito Santo</option>
+                <option>Goiás</option>
+                <option>Maranhão</option>
+                <option>Mato Grosso</option>
+                <option>Mato Grosso do Sul</option>
+                <option>Minas Gerais</option>
+                <option>Paraíba</option>
+                <option>Paraná</option>
+                <option>Pernambuco</option>
+                <option>Piauí</option>
+                <option>Rio Grande do Norte</option>
+                <option>Rio Grande do Sul</option>
+                <option>Rondônia</option>
+                <option>Roraima </option>
+                <option>Santa Catarina</option>
+                <option>Sergipe</option>
+                <option>Tocantins</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Cidade </label>
+              <input class="form-control" id="cidade" type="text" placeholder="Cidade" required data-validation-required-message="Por favor, informe a cidade.">
+              <span class="help-block">Não necessariamente a cidade onde reside ou nasceu, mas de onde seu sotaque é caracterizado.</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Sexo </label>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" placeholder="Sexo" id="gender" value="option1" checked=""> Feminino
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" placeholder="Sexo" id="gender" value="option2"> Masculino
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Grau de Escolaridade</label>
+              <select class="form-control" id="escolaridade">
+                <option>Ensino Fundamental</option>
+                <option>Ensino Fundamental Incompleto</option>
+                <option>Ensino Médio</option>
+                <option>Ensino Médio Incompleto</option>
+                <option>Ensino Superior</option>
+                <option>Ensino Superior Incompleto</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Data </label>
+              <input type="date" class="form-control" id="data">
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-basic btn-lg" id="gravar">Gravar Dados</button>
+            <button type="submit" class="btn btn-warning btn-lg" id="limpar">Limpar Dados</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="resume-section p-3 p-lg-5 d-flex flex-column bg-light" id="gravacao">
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          <h1>Frases para Gravação</h1>
         </div>
       </div>
     </div>
 
-    <div class="container">
-    <router-outlet></router-outlet>
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            1 - Eu rasguei todo meu dinheiro em vão, minha família depende da aposentadoria do meu avô. Mas o dia amanheceu ensolarado
+            e eu fiquei feliz porque minha tia viajou para Porto Alegre às sete horas.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop1" (click)="stop('1',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <input type="button" class="btn btn-default btn-sm" id="salvar1" value="Salvar" />
+          <ul id="recordingslist1"></ul>
+        </div>
+      </div>
     </div>
-    
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            2 - O tele-jornal da Globo terminou agora a pouco, todos se levantaram, a porta bateu forte e meu tio xingou bastante. Mas
+            disse que é um grande prazer ter os sobrinhos hospedados em casa e não em um dos hotéis do sudoeste.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop2" (click)="stop('2',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar2">Salvar</button>
+          <ul id="recordingslist2"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            3 - Para ganhar, preciso decifrar o código até amanhã. Os papeis foram rasgados mas ainda é possível ler informações importantes.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop3" (click)="stop('3',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar3">Salvar</button>
+          <ul id="recordingslist3"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            4- Suas atitudes são muito drásticas e resultarão em guerra entre vocês. Ela chegou a pedir o divórcio antes dele morrer
+            e pensou que podia compartilhar esse documento com você.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop4" (click)="stop('4',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar4">Salvar</button>
+          <ul id="recordingslist4"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            5 - Meu orientador disse que o professor de Português e a professora de Matemá- tica se casaram e foram morar na Nigéria,
+            onde clima está muito diferente de dez anos atrás.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop5" (click)="stop('5',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar5">Salvar</button>
+          <ul id="recordingslist5"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            6 - Você tem razão, a correção da prova não foi justa e a turma tirou notas abaixo da média. Assim como a gestão do atual
+            prefeito, a diretoria não está agradando o povo.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop6" (click)="stop('6',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar6">Salvar</button>
+          <ul id="recordingslist6"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            7 - Tenho aptidão para tirar fotos de motos e guitarras, então recebi em dólar e comprei um carro, jóias e relógios para
+            nós. A atriz teve uma ótima atua- ção no espetáculo e recebeu meus parabéns e um presente pela apresentação fantástica.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop7" (click)="stop('7',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar7">Salvar</button>
+          <ul id="recordingslist7"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            8 - Eu criei muita expectativa nesse trabalho. O chefe não ouviu meu clamor, continuou sorrindo para mim e segurando a colher
+            estava suja de abacate ele disse "A palavra caçador se escreve com C cedilha".
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop8" (click)="stop('8',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar8">Salvar</button>
+          <ul id="recordingslist8"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            9 - O Brasil é um país injusto e desigual, é errado não partilhar a comida com os mais necessitados. Mas só vota quem tiver
+            o título de eleitor.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop9" (click)="stop('9',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar9">Salvar</button>
+          <ul id="recordingslist9"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            10 - Esse canal tem bastante pornografia e a abertura do campeonato ocorreu antes de ontem, quando os turistas japoneses
+            procuravam belas casas para alugar.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop10" (click)="stop('10',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar10">Salvar</button>
+          <ul id="recordingslist10"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            11 - O biscoito era de chocolate com morango, por isso escolhi o bombom de chocolate ao leite com licor de amarula. Ainda
+            precisamos comprar pó de café, pão francês, abóbora e melão.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop11" (click)="stop('11',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar11">Salvar</button>
+          <ul id="recordingslist11"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            12 - Segurei a panela de macarrão com apenas uma mão e as duas pilhas que eu lhe dei caíram no chão. A rã está embaixo do
+            fogão, deve ser retirada logo, pois tenho medo de répteis e de minhocas.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop12" (click)="stop('12',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar12">Salvar</button>
+          <ul id="recordingslist12"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            13 - Ele pulou daquele caminhão que transportava tubos de ferro e nega que naquela área tem produtos tóxicos. Foi na cidade
+            em que encontraram o corpo do mendigo numa bocada e montaram uma emboscada para prender os assaltantes.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop13" (click)="stop('13',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar13">Salvar</button>
+          <ul id="recordingslist13"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            14 - Ele ficou chateado porque foi chamado de burro pelo escrivão zangado enquanto lavava sua blusa azul de lã com água e
+            sabão.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop14" (click)="stop('14',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar14">Salvar</button>
+          <ul id="recordingslist14"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            15 - Li que o escrivão mora sozinho perto da plantação de feijão e sorte que o jacaré que fugiu do zoológico já foi encontrado.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop15" (click)="stop('15',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar15">Salvar</button>
+          <ul id="recordingslist15"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            15 - Li que o escrivão mora sozinho perto da plantação de feijão e sorte que o jacaré que fugiu do zoológico já foi encontrado.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop15" (click)="stop('15',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar15">Salvar</button>
+          <ul id="recordingslist15"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <div class="resume-content mr-auto">
+        <div>
+          <h4 align="Justify">
+            16 - A velha locomotiva vem com pouca carga e os faróis iluminam as flores da rua em que a criança desenhou um vulcão.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Gravar</button>
+          <button class="btn btn-default btn-sm" id="stop16" (click)="stop('16',this);" [ngClass]='{disabled: isOff}'>Parar</button>
+          <button class="btn btn-default btn-sm" id="salvar16">Salvar</button>
+          <ul id="recordingslist16"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <span class="copyright">By Nathália Batista Email: nathbapt@decom.fee.unicamp.br</span>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/natharb">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -49,13 +49,13 @@ function createDownloadLink(id) {
         //var text = document.getElementById("text-val").value; 
         var filename = new Date().toISOString() + '.wav';
         //download(filename, url);
-        upload(filename, url)
+        upload(filename, url, blob)
       }, false);
     }
   );
 }
 
-function upload(filename, url) {
+function upload(filename, url, blob) {
 
   var config = {
     apiKey: "AIzaSyBinR79zFjxe7Qu7XG6xFo_zCpGp9WJrYI",
@@ -67,19 +67,18 @@ function upload(filename, url) {
   }
   firebase.initializeApp(config);
 
-  // Gets the response and returns it as a blob
-  fetch(url).then(res => res.blob().then(blob => {
-    // Here's where you get access to the blob
-    // And you can use it for whatever you want
-    // Like calling ref().put(blob)
-
-    var audioRef = firebase.storage().ref('samples/');
-    console.log('passou');
-    audioRef.put(blob).then(function (snapshot) {
-      console.log('Uploaded!');
+  let promise = new Promise((res, rej) => {
+    let uploadTask = firebase.storage().ref(`${filename}`).put(blob);
+    uploadTask.on('state_changed', function (snapshot) {
+    }, function (error) {
+      rej(error);
+    }, function () {
+      var downloadURL = uploadTask.snapshot.downloadURL;
+      res(downloadURL);
     });
-  }));
-  }
+  });
+  return promise;
+}
 
 
 /*function download(filename, url) {
@@ -93,31 +92,31 @@ function upload(filename, url) {
 }*/
 
 var recorderObject = (function () {
-    return {
-      recorder: function () {
-        (function ($) {
-          'use strict';
-          window.onload = function init() {
-            try {
-              // webkit shim
-              window.AudioContext = window.AudioContext || window.webkitAudioContext;
-              navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  return {
+    recorder: function () {
+      (function ($) {
+        'use strict';
+        window.onload = function init() {
+          try {
+            // webkit shim
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+              navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-              window.URL = window.URL || window.webkitURL;
+            window.URL = window.URL || window.webkitURL;
 
-              audio_context = new AudioContext;
-              alert('Audio detectado.');
-            } catch (e) {
-              alert('Este browser não dá suporte ao plugin!');
-            }
+            audio_context = new AudioContext;
+            //alert('Audio detectado.');
+          } catch (e) {
+            alert('Este browser não dá suporte ao plugin!');
+          }
 
 
-            navigator.getUserMedia({ audio: true }, startUserMedia, function (e) {
+          navigator.getUserMedia({ audio: true }, startUserMedia, function (e) {
 
-            });
-          };
-        })(window.jQuery);
-      }
+          });
+        };
+      })(window.jQuery);
     }
-  })(recorderObject || {})
+  }
+})(recorderObject || {})
