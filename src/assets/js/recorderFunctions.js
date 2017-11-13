@@ -1,6 +1,23 @@
 var audio_context;
 var recorder;
 
+var config = {
+  apiKey: "AIzaSyBinR79zFjxe7Qu7XG6xFo_zCpGp9WJrYI",
+  authDomain: "audio-recorder-503d8.firebaseapp.com",
+  databaseURL: "https://audio-recorder-503d8.firebaseio.com",
+  projectId: "audio-recorder-503d8",
+  storageBucket: "audio-recorder-503d8.appspot.com",
+  messagingSenderId: "318922865113"
+}
+
+console.log(config);
+
+function toggleVisibility(id) {
+  var e = document.getElementById(id);
+  if(e.style.visibility == 'hidden')
+     e.style.visibility = 'visible';
+}
+
 function startUserMedia(stream) {
   var input = audio_context.createMediaStreamSource(stream);
   recorder = new Recorder(input);
@@ -45,9 +62,15 @@ function createDownloadLink(id) {
       //document.getElementById('recordingslist' + id).appendChild(li);
 
       document.getElementById("salvar" + id).addEventListener("click", function () {
+
         // Generate download of hello.txt file with some content
         //var text = document.getElementById("text-val").value; 
-        var filename = new Date().toISOString() + '.wav';
+        var idade = document.getElementById('idade').value;
+        var cidade = document.getElementById('cidade').value;
+        var estado = document.getElementById('estado').value;
+        var sexo = document.getElementById('sexo').value;
+        var data = document.getElementById("data").value;
+        var filename = 'frase'+ '_'+ id + '_' + data + '_'+ idade +'_' + cidade + '_'+ estado + '_'+ sexo + '.wav';
         //download(filename, url);
         upload(filename, url, blob)
       }, false);
@@ -55,29 +78,17 @@ function createDownloadLink(id) {
   );
 }
 
-function upload(filename, url, blob) {
+function upload(filename, url, blob,id) {
 
-  var config = {
-    apiKey: "AIzaSyBinR79zFjxe7Qu7XG6xFo_zCpGp9WJrYI",
-    authDomain: "audio-recorder-503d8.firebaseapp.com",
-    databaseURL: "https://audio-recorder-503d8.firebaseio.com",
-    projectId: "audio-recorder-503d8",
-    storageBucket: "audio-recorder-503d8.appspot.com",
-    messagingSenderId: "318922865113"
-  }
   firebase.initializeApp(config);
 
-  let promise = new Promise((res, rej) => {
-    let uploadTask = firebase.storage().ref(`${filename}`).put(blob);
-    uploadTask.on('state_changed', function (snapshot) {
-    }, function (error) {
-      rej(error);
-    }, function () {
-      var downloadURL = uploadTask.snapshot.downloadURL;
-      res(downloadURL);
-    });
+  let uploadTask = firebase.storage().ref();
+
+  var thisRef = uploadTask.child(`${filename}`);
+
+  thisRef.put(blob).then(function(snapshot) {
+    console.log('Uploaded a blob or file!');
   });
-  return promise;
 }
 
 
@@ -88,7 +99,7 @@ function upload(filename, url, blob) {
   element.style.display = 'display: block';
   document.body.appendChild(element);
   element.click();
-  document.body.removeChild(element);
+  document.body.removeChild(element);""
 }*/
 
 var recorderObject = (function () {
