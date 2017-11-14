@@ -1,6 +1,9 @@
 var audio_context;
 var recorder;
 
+var transactionId = '_' + Math.random().toString(36).substr(2, 9);
+console.log(transactionId);
+
 var config = {
   apiKey: "AIzaSyBinR79zFjxe7Qu7XG6xFo_zCpGp9WJrYI",
   authDomain: "audio-recorder-503d8.firebaseapp.com",
@@ -8,14 +11,6 @@ var config = {
   projectId: "audio-recorder-503d8",
   storageBucket: "audio-recorder-503d8.appspot.com",
   messagingSenderId: "318922865113"
-}
-
-console.log(config);
-
-function toggleVisibility(id) {
-  var e = document.getElementById(id);
-  if(e.style.visibility == 'hidden')
-     e.style.visibility = 'visible';
 }
 
 function startUserMedia(stream) {
@@ -70,24 +65,34 @@ function createDownloadLink(id) {
         var estado = document.getElementById('estado').value;
         var sexo = document.getElementById('sexo').value;
         var data = document.getElementById("data").value;
-        var filename = 'frase'+ '_'+ id + '_' + data + '_'+ idade +'_' + cidade + '_'+ estado + '_'+ sexo + '.wav';
+        var filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo + '.wav';
+        var device_filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo;
         //download(filename, url);
-        upload(filename, url, blob)
+        upload(filename, url, blob);
       }, false);
     }
   );
 }
 
-function upload(filename, url, blob,id) {
+function uploadTextFile() {
 
-  firebase.initializeApp(config);
+  navigator.mediaDevices.enumerateDevices().then(devices => { var audioDevice = devices.find(d => d.kind == "audioinput") });
+  console.log(audioDevice);
+
+  var filetext = new Blob([audioDevice], { type: 'text/plain' });
+  let uploadTaskTextFile = firebase.storage().ref();
+  var refTextFile = uploadTaskTextFile.child(`${transactionId + _ + "deviceType"}`);
+  refTextFile.put(filetext).then(function (snapshot) {
+    console.log('Upload do arquivo de texto!');
+  });
+}
+
+function upload(filename, url, blob) {
 
   let uploadTask = firebase.storage().ref();
-
-  var thisRef = uploadTask.child(`${filename}`);
-
-  thisRef.put(blob).then(function(snapshot) {
-    console.log('Uploaded a blob or file!');
+  var thisRef = uploadTask.child(`${transactionId + '_' + filename}`);
+  thisRef.put(blob).then(function (snapshot) {
+    console.log('Upload do arquivo de audio!');
   });
 }
 
@@ -114,17 +119,19 @@ var recorderObject = (function () {
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
               navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
+            firebase.initializeApp(config);
+            console.log(navigator.mediaDevices.enumerateDevices());
+
+            uploadTextFile(); //É essa chamada aqui.
+
             window.URL = window.URL || window.webkitURL;
 
             audio_context = new AudioContext;
-            //alert('Audio detectado.');
+            alert('Audio detectado.');
           } catch (e) {
             alert('Este browser não dá suporte ao plugin!');
           }
-
-
           navigator.getUserMedia({ audio: true }, startUserMedia, function (e) {
-
           });
         };
       })(window.jQuery);
