@@ -65,10 +65,11 @@ function createDownloadLink(id) {
         var estado = document.getElementById('estado').value;
         var sexo = document.getElementById('sexo').value;
         var data = document.getElementById("data").value;
-        var filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo + '.wav';
-        var device_filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo;
+        var escolaridade = document.getElementById("escolaridade").value;
+        var filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo + '_' + escolaridade + '.wav';
         //download(filename, url);
         upload(filename, url, blob);
+        alert('Upload do arquivo de audio com sucesso!');
       }, false);
     }
   );
@@ -76,15 +77,28 @@ function createDownloadLink(id) {
 
 function uploadTextFile() {
 
-  navigator.mediaDevices.enumerateDevices().then(devices => { var audioDevice = devices.find(d => d.kind == "audioinput") });
-  console.log(audioDevice);
+  if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+    console.log("enumerateDevices() not supported.");
+    return;
+  }
 
-  var filetext = new Blob([audioDevice], { type: 'text/plain' });
-  let uploadTaskTextFile = firebase.storage().ref();
-  var refTextFile = uploadTaskTextFile.child(`${transactionId + _ + "deviceType"}`);
-  refTextFile.put(filetext).then(function (snapshot) {
-    console.log('Upload do arquivo de texto!');
-  });
+  var saida = [];
+  navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(() => navigator.mediaDevices.enumerateDevices())
+    .then(devices => {
+      console.log(devices.length + " devices.");
+      devices.forEach(function (device) {
+        saida.push(device.kind + ": " + device.label).toString();
+        var blobFileText = new Blob([saida], { type: 'text/plain' });
+        let uploadTaskTextFile = firebase.storage().ref();
+        var refTextFile = uploadTaskTextFile.child(`${transactionId + '_' + "deviceType"}`);
+        refTextFile.put(blobFileText).then(function (snapshot) {
+          console.log('Upload do arquivo de texto!');
+        });
+      }
+      );
+    })
+    .catch(e => console.log(e));
 }
 
 function upload(filename, url, blob) {
@@ -95,17 +109,6 @@ function upload(filename, url, blob) {
     console.log('Upload do arquivo de audio!');
   });
 }
-
-
-/*function download(filename, url) {
-  var element = document.createElement('a');
-  element.setAttribute('href', url);
-  element.setAttribute('download', filename);
-  element.style.display = 'display: block';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);""
-}*/
 
 var recorderObject = (function () {
   return {
@@ -122,15 +125,15 @@ var recorderObject = (function () {
             firebase.initializeApp(config);
             console.log(navigator.mediaDevices.enumerateDevices());
 
-            uploadTextFile(); //É essa chamada aqui.
-
             window.URL = window.URL || window.webkitURL;
 
             audio_context = new AudioContext;
-            alert('Audio detectado.');
+            //alert('Audio detectado.');
+
           } catch (e) {
             alert('Este browser não dá suporte ao plugin!');
           }
+          uploadTextFile();
           navigator.getUserMedia({ audio: true }, startUserMedia, function (e) {
           });
         };
@@ -138,3 +141,13 @@ var recorderObject = (function () {
     }
   }
 })(recorderObject || {})
+
+/*function download(filename, url) {
+  var element = document.createElement('a');
+  element.setAttribute('href', url);
+  element.setAttribute('download', filename);
+  element.style.display = 'display: block';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);""
+}*/

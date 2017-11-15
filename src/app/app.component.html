@@ -4,14 +4,14 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <h2 class="section-heading text-uppercase">Sobre a Pesquisa</h2>
-        <h3 class="section-subheading text-muted">Sabemos que o desempenho de sistemas de reconhecimento de fala é afetado pelo sotaque do usuário, visto que a pronúncia
+        <h3 class="section-subheading text-muted">Sabe-se que o desempenho de sistemas de reconhecimento de fala é afetado pelo sotaque do usuário, visto que a pronúncia
           de uma frase é alterada de acordo com a região de origem do falante. O sotaque que percebemos (escutamos) refere-se
           às características prosódicas e fonéticas, por exemplo, entonação, duração e segmentos definidos pelo país ou região
           de um indivíduo. Ele pode ser também ser entendido como os traços melódicos da língua. Diante disso, o reconhecimento
           de sotaque permite pré-selecionar modelos linguísticos, acústicos e lexicais adequados a cada região do falante
           por meio da limitação do espaço de características, aumentando potencialmente o desempenho do sistema de reconhecimento
-          automático de locutor. As informações aqui obtidas serão utilizada estritamente em pesquisas na área de reconhecimento
-          de fala. Esse projeto visa obter grande número de amostras de voz para os diferentes sotaques brasileiros, que
+          automático de locutor. As informações aqui obtidas serão utilizadas estritamente em pesquisas na área de reconhecimento
+          de fala. Essa aplicação visa obter grande número de amostras de voz para os diferentes sotaques brasileiros, que
           serão utilizadas no projeto de Mestrado em Engenharia Elétrica na Universidade Estadual de Campinas (Unicamp).</h3>
       </div>
     </div>
@@ -201,12 +201,14 @@
             <label>Grau de Escolaridade</label>
             <div *ngIf="userForm.controls['escolaridade'].hasError('required') && userForm.controls['escolaridade'].touched" class="alert alert-danger">Você deve selecionar uma opção.</div>
             <select id="escolaridade" class="form-control" name="escolaridade" class="form-control" [formControl]="userForm.controls['escolaridade']">
-              <option>Ensino Fundamental</option>
+              <option>Ensino Fundamental Completo</option>
               <option>Ensino Fundamental Incompleto</option>
-              <option>Ensino Médio</option>
+              <option>Ensino Médio Completo</option>
               <option>Ensino Médio Incompleto</option>
-              <option>Ensino Superior</option>
+              <option>Ensino Superior Completo</option>
               <option>Ensino Superior Incompleto</option>
+              <option>Mestrado</option>
+              <option>Doutorado</option>
             </select>
           </div>
 
