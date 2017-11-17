@@ -34,21 +34,18 @@ function createDownloadLink(id) {
   recorder && recorder.exportWAV(
     function (blob) {
       var url = URL.createObjectURL(blob);
-      console.log(blob);
-      console.log(url);
       var pai1 = document.getElementById('recordingslist' + id);
       var liId = document.getElementById("li" + id);
+      
       if (liId != undefined) {
-        pai1.removeChild(liId);
+       pai1.removeChild(liId);
       }
-
       var li = document.createElement('span');
       var audioEl = document.createElement('audio');
       //var hf = document.createElement('a');
       audioEl.controls = true;
       audioEl.src = url;
       //hf.href = url;
-      //hf.download = new Date().toISOString() + '.wav';
       //hf.innerHTML = hf.download;
       li.appendChild(audioEl);
       li.setAttribute("id", "li" + id);
@@ -57,19 +54,15 @@ function createDownloadLink(id) {
       //document.getElementById('recordingslist' + id).appendChild(li);
 
       document.getElementById("salvar" + id).addEventListener("click", function () {
-
-        // Generate download of hello.txt file with some content
-        //var text = document.getElementById("text-val").value; 
         var idade = document.getElementById('idade').value;
         var cidade = document.getElementById('cidade').value;
         var estado = document.getElementById('estado').value;
-        var sexo = document.getElementById('sexo').value;
+        var sexo = document.querySelector('input[name="sexo"]:checked').value;
         var data = document.getElementById("data").value;
         var escolaridade = document.getElementById("escolaridade").value;
         var filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo + '_' + escolaridade + '.wav';
-        //download(filename, url);
         upload(filename, url, blob);
-        alert('Upload do arquivo de audio com sucesso!');
+        alert('Gravação salva na base de dados com sucesso!');
       }, false);
     }
   );
@@ -86,14 +79,14 @@ function uploadTextFile() {
   navigator.mediaDevices.getUserMedia({ audio: true })
     .then(() => navigator.mediaDevices.enumerateDevices())
     .then(devices => {
-      console.log(devices.length + " devices.");
+      saida.push(devices.length + " devices.").toString();
       devices.forEach(function (device) {
         saida.push(device.kind + ": " + device.label).toString();
         var blobFileText = new Blob([saida], { type: 'text/plain' });
         let uploadTaskTextFile = firebase.storage().ref();
         var refTextFile = uploadTaskTextFile.child(`${transactionId + '_' + "deviceType"}`);
         refTextFile.put(blobFileText).then(function (snapshot) {
-          console.log('Upload do arquivo de texto!');
+          console.log('Frase salva na base de dados com sucesso!');
         });
       }
       );
@@ -118,13 +111,12 @@ var recorderObject = (function () {
         window.onload = function init() {
           try {
             // webkit shim
+            firebase.initializeApp(config);
+            uploadTextFile();
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
               navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-            firebase.initializeApp(config);
-            console.log(navigator.mediaDevices.enumerateDevices());
-
+              
             window.URL = window.URL || window.webkitURL;
 
             audio_context = new AudioContext;
@@ -133,7 +125,6 @@ var recorderObject = (function () {
           } catch (e) {
             alert('Este browser não dá suporte ao plugin!');
           }
-          uploadTextFile();
           navigator.getUserMedia({ audio: true }, startUserMedia, function (e) {
           });
         };
