@@ -66,7 +66,8 @@
                 <h4>Instrução 1</h4>
               </div>
               <div class="timeline-body">
-                <p class="text-muted">A gravação deve ser feita em um computador/notebook e utilizar o browser Google Chrome. A funcionalidade de gravação não está disponível para celular.</p>
+                <p class="text-muted">A gravação deve ser feita em um notebook/computador e utilizar o browser Google Chrome. A funcionalidade
+                  de gravação não está disponível para celular.</p>
               </div>
             </div>
           </li>
@@ -94,7 +95,8 @@
               </div>
               <div class="timeline-body">
                 <p class="text-muted">Ao realizar a gravação, escute-a e verifique se a frase foi pronunciada corretamente e a voz está audível.
-                  Caso contrário, tente gravar novamente pressionando o botão "Iniciar Gravação". Apenas após isso, pressione Salvar para que a gravação seja armazenada na base de dados.</p>
+                  Caso contrário, para gravar novamente pressione o botão "Iniciar Gravação" mais uma vez. Para salvar o áudio gravado, pressione
+                  "Salvar" para que a gravação seja armazenada na base de dados.</p>
               </div>
             </div>
           </li>
@@ -211,7 +213,7 @@
           </div>
 
           <div class="form-group" [ngClass]="{'has-error':!userForm.controls['data'].valid && userForm.controls['data'].touched}">
-            <label>Data </label>
+            <label>Data da Gravação</label>
             <input id="data" type="date" class="form-control" name="data" [formControl]="userForm.controls['data']">
           </div>
           <br>
@@ -219,7 +221,7 @@
           <div id="success"></div>
           <div class="form-group">
             <button type="submit" class="btn btn-basic btn-lg" [disabled]="!userForm.valid" (click)="onSelect()">
-            Gravar Dados</button>
+              Gravar Dados</button>
             <button type="submit" class="btn btn-primary btn-lg" (click)="userForm.reset()">Limpar Dados</button>
           </div>
         </form>
@@ -228,7 +230,8 @@
   </div>
 </section>
 
-<section class="resume-section p-3 p-lg-5 d-flex flex-column bg-light" id="gravacao">
+<div [hidden]="IsHidden">
+<section class="resume-section p-3 p-lg-5 d-flex flex-column " id="gravacao">
   <div class="bs-docs-section">
     <div class="row">
       <div class="col-lg-12">
@@ -238,245 +241,274 @@
       </div>
     </div>
 
-    <div [hidden]="IsHidden">
-      <div class="resume-item d-flex flex-column flex-md-row mb-5 display">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              1 - Eu rasguei todo meu dinheiro em vão, minha família depende da aposentadoria do meu avô. Mas o dia amanheceu ensolarado
-              e eu fiquei feliz porque minha tia viajou para Porto Alegre às sete horas.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop1" (click)="stop('1',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <input type="button" class="btn btn-default btn-sm" id="salvar1" value="Salvar" />
-            <ul id="recordingslist1"></ul>
-          </div>
-        </div>
-      </div>
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              2 - O tele-jornal da Globo terminou agora a pouco, todos se levantaram, a porta bateu forte e meu tio xingou bastante. Mas
-              disse que é um grande prazer ter os sobrinhos hospedados em casa e não em um dos hotéis do sudoeste.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop2" (click)="stop('2',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar2">Salvar</button>
-            <ul id="recordingslist2"></ul>
-          </div>
-        </div>
-      </div>
+    <div class="resume-item d-flex flex-column flex-md-row mb-5 display">
+      <div class="resume-content mr-auto">
+        <div id="frase1" style="display:block">
 
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              3 - Para ganhar, preciso decifrar o código até amanhã. Os papeis foram rasgados mas ainda é possível ler informações importantes.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop3" (click)="stop('3',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar3">Salvar</button>
-            <ul id="recordingslist3"></ul>
+          <h4 align="Justify">
+            1 - Eu rasguei todo meu dinheiro em vão, minha família depende da aposentadoria do meu avô. Mas o dia amanheceu ensolarado
+            e eu fiquei feliz porque minha tia viajou para Porto Alegre às sete horas.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop1" (click)="stop('1',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <input type="button" class="btn btn-default btn-sm" id="salvar1" value="Salvar" />
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase1')">Próxima frase</button>
+          <ul id="recordingslist1"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0"
+              aria-valuemax="100" style="width:6.25%"> 6.25%.
+            </div>
           </div>
         </div>
-      </div>
+        <div id="frase2" style="display:none">
+          <h4 align="Justify">
+            2 - O tele-jornal da Globo terminou agora a pouco, todos se levantaram, a porta bateu forte e meu tio xingou bastante. Mas
+            disse que é um grande prazer ter os sobrinhos hospedados em casa e não em um dos hotéis do sudoeste.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop2" (click)="stop('2',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar2">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase2')">Próxima frase</button>
+          <ul id="recordingslist2"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:12.50%"> 12.50%.
+            </div>
+          </div>
+        </div>
+        <div id="frase3" style="display:none">
+          <h4 align="Justify">
+            3 - Para ganhar, preciso decifrar o código até amanhã. Os papeis foram rasgados mas ainda é possível ler informações importantes.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop3" (click)="stop('3',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar3">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase3')">Próxima frase</button>
+          <ul id="recordingslist3"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:18.75%"> 18.75%
+            </div>
+          </div>
+        </div>
+        <div id="frase4" style="display:none">
+          <h4 align="Justify">
+            4- Suas atitudes são muito drásticas e resultarão em guerra entre vocês. Ela chegou a pedir o divórcio antes dele morrer
+            e pensou que podia compartilhar esse documento com você.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop4" (click)="stop('4',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar4">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase4')">Próxima frase</button>
+          <ul id="recordingslist4"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:25%"> 25%
+            </div>
+          </div>
+        </div>
+        <div id="frase5" style="display:none">
+          <h4 align="Justify">
+            5 - Meu orientador disse que o professor de Português e a professora de Matemática se casaram e foram morar na Nigéria, onde
+            clima está muito diferente de dez anos atrás.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop5" (click)="stop('5',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar5">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase5')">Próxima frase</button>
+          <ul id="recordingslist5"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:31.25%"> 31.25%
+            </div>
+          </div>
+        </div>
+        <div id="frase6" style="display:none">
+          <h4 align="Justify">
+            6 - Você tem razão, a correção da prova não foi justa e a turma tirou notas abaixo da média. Assim como a gestão do atual
+            prefeito, a diretoria não está agradando o povo.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop6" (click)="stop('6',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar6">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase6')">Próxima frase</button>
+          <ul id="recordingslist6"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:37.50%"> 37.50%
+            </div>
+          </div>
+        </div>
+        <div id="frase7" style="display:none">
+          <h4 align="Justify">
+            7 - Tenho aptidão para tirar fotos de motos e guitarras, então recebi em dólar e comprei um carro, jóias e relógios para
+            nós. A atriz teve uma ótima atua- ção no espetáculo e recebeu meus parabéns e um presente pela apresentação fantástica.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop7" (click)="stop('7',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar7">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase7')">Próxima frase</button>
+          <ul id="recordingslist7"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:43.75%"> 43.75%
+            </div>
+          </div>
+        </div>
+        <div id="frase8" style="display:none">
+          <h4 align="Justify">
+            8 - Eu criei muita expectativa nesse trabalho. O chefe não ouviu meu clamor, continuou sorrindo para mim e segurando a colher
+            estava suja de abacate ele disse: "A palavra caçador se escreve com C cedilha".
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop8" (click)="stop('8',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar8">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase8')">Próxima frase</button>
+          <ul id="recordingslist8"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:50%"> 50%
+            </div>
+          </div>
+        </div>
+        <div id="frase9" style="display:none">
+          <h4 align="Justify">
+            9 - O Brasil é um país injusto e desigual, é errado não partilhar a comida com os mais necessitados. Mas só vota quem tiver
+            o título de eleitor.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop9" (click)="stop('9',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar9">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase9')">Próxima frase</button>
+          <ul id="recordingslist9"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:56.25%"> 56.25%
+            </div>
+          </div>
+        </div>
+        <div id="frase10" style="display:none">
+          <h4 align="Justify">
+            10 - Esse canal tem bastante pornografia e a abertura do campeonato ocorreu antes de ontem, quando os turistas japoneses
+            procuravam belas casas para alugar.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop10" (click)="stop('10',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar10">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase10')">Próxima frase</button>
+          <ul id="recordingslist10"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:62.5%"> 62.5%
+            </div>
+          </div>
+        </div>
+        <div id="frase11" style="display:none">
+          <h4 align="Justify">
+            11 - O biscoito era de chocolate com morango, por isso escolhi o bombom de chocolate ao leite com licor de amarula. Ainda
+            precisamos comprar pó de café, pão francês, abóbora e melão.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop11" (click)="stop('11',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar11">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase11')">Próxima frase</button>
+          <ul id="recordingslist11"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:68.75%"> 68.75%
+            </div>
+          </div>
+        </div>
+        <div id="frase12" style="display:none">
+          <h4 align="Justify">
+            12 - Segurei a panela de macarrão com apenas uma mão e as duas pilhas que eu lhe dei caíram no chão. A rã está embaixo do
+            fogão, deve ser retirada logo, pois tenho medo de répteis e de minhocas.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop12" (click)="stop('12',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar12">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase12')">Próxima frase</button>
+          <ul id="recordingslist12"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:75%"> 75%
+            </div>
+          </div>
+        </div>
+        <div id="frase13" style="display:none">
+          <h4 align="Justify">
+            13 - Ele pulou daquele caminhão que transportava tubos de ferro e nega que naquela área tem produtos tóxicos. Foi na cidade
+            em que encontraram o corpo do mendigo numa bocada e montaram uma emboscada para prender os assaltantes.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop13" (click)="stop('13',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar13">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase13')">Próxima frase</button>
+          <ul id="recordingslist13"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:81.25%"> 81.25%
+            </div>
+          </div>
+        </div>
+        <div id="frase14" style="display:none">
+          <h4 align="Justify">
+            14 - Ele ficou chateado porque foi chamado de burro pelo escrivão zangado enquanto lavava sua blusa azul de lã com água e
+            sabão.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop14" (click)="stop('14',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar14">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase14')">Próxima frase</button>
+          <ul id="recordingslist14"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:87.5%"> 87.5%
+            </div>
+          </div>
+        </div>
+        <div id="frase15" style="display:none">
+          <h4 align="Justify">
+            15 - Li que o escrivão mora sozinho perto da plantação de feijão e sorte que o jacaré que fugiu do zoológico já foi encontrado.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop15" (click)="stop('15',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar15">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase15')">Próxima frase</button>
+          <ul id="recordingslist15"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:93.75%"> 93.75%
+            </div>
+          </div>
+        </div>
+        <div id="frase16" style="display:none">
+          <h4 align="Justify">
+            16 - A velha locomotiva vem com pouca carga e os faróis iluminam as flores da rua em que a criança desenhou um vulcão.
+          </h4>
+          <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
+          <button class="btn btn-default btn-sm" id="stop16" (click)="stop('16',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
+          <button class="btn btn-default btn-sm" id="salvar16">Salvar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase16')">Finalizar</button>
+          <ul id="recordingslist16"></ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100" style="width:100%"> Concluído 100%
+            </div>
+          </div>
+        </div>
+        <div id="frase17" style="display:none" class="alert alert-info" role="alert">
+          <h4 class="alert-heading">Obrigada!</h4>
+          <p>Muito importante a participação de cada um de vocês nessa pesquisa. Suas informações foram salvas em uma base de dados colaborativa e aberta, ou seja, qualquer pessoa pode ter acesso e utilizá-las em outras pesquisas.</p>
+          <p class="mb-0">Divulgue o site com seus amigos e familiares para que mais pessoas participem e contribuam.</p>
+          <p class="mb-0">Para fazer uma nova gravação, atualize a página e preencha novamente os dados.</p>
+        </div>
 
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              4- Suas atitudes são muito drásticas e resultarão em guerra entre vocês. Ela chegou a pedir o divórcio antes dele morrer
-              e pensou que podia compartilhar esse documento com você.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop4" (click)="stop('4',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar4">Salvar</button>
-            <ul id="recordingslist4"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              5 - Meu orientador disse que o professor de Português e a professora de Matemá- tica se casaram e foram morar na Nigéria,
-              onde clima está muito diferente de dez anos atrás.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop5" (click)="stop('5',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar5">Salvar</button>
-            <ul id="recordingslist5"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              6 - Você tem razão, a correção da prova não foi justa e a turma tirou notas abaixo da média. Assim como a gestão do atual
-              prefeito, a diretoria não está agradando o povo.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop6" (click)="stop('6',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar6">Salvar</button>
-            <ul id="recordingslist6"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              7 - Tenho aptidão para tirar fotos de motos e guitarras, então recebi em dólar e comprei um carro, jóias e relógios para
-              nós. A atriz teve uma ótima atua- ção no espetáculo e recebeu meus parabéns e um presente pela apresentação
-              fantástica.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop7" (click)="stop('7',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar7">Salvar</button>
-            <ul id="recordingslist7"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              8 - Eu criei muita expectativa nesse trabalho. O chefe não ouviu meu clamor, continuou sorrindo para mim e segurando a colher
-              estava suja de abacate ele disse "A palavra caçador se escreve com C cedilha".
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop8" (click)="stop('8',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar8">Salvar</button>
-            <ul id="recordingslist8"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              9 - O Brasil é um país injusto e desigual, é errado não partilhar a comida com os mais necessitados. Mas só vota quem tiver
-              o título de eleitor.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop9" (click)="stop('9',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar9">Salvar</button>
-            <ul id="recordingslist9"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              10 - Esse canal tem bastante pornografia e a abertura do campeonato ocorreu antes de ontem, quando os turistas japoneses
-              procuravam belas casas para alugar.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop10" (click)="stop('10',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar10">Salvar</button>
-            <ul id="recordingslist10"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              11 - O biscoito era de chocolate com morango, por isso escolhi o bombom de chocolate ao leite com licor de amarula. Ainda
-              precisamos comprar pó de café, pão francês, abóbora e melão.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop11" (click)="stop('11',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar11">Salvar</button>
-            <ul id="recordingslist11"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              12 - Segurei a panela de macarrão com apenas uma mão e as duas pilhas que eu lhe dei caíram no chão. A rã está embaixo do
-              fogão, deve ser retirada logo, pois tenho medo de répteis e de minhocas.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop12" (click)="stop('12',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar12">Salvar</button>
-            <ul id="recordingslist12"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              13 - Ele pulou daquele caminhão que transportava tubos de ferro e nega que naquela área tem produtos tóxicos. Foi na cidade
-              em que encontraram o corpo do mendigo numa bocada e montaram uma emboscada para prender os assaltantes.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop13" (click)="stop('13',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar13">Salvar</button>
-            <ul id="recordingslist13"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              14 - Ele ficou chateado porque foi chamado de burro pelo escrivão zangado enquanto lavava sua blusa azul de lã com água e
-              sabão.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop14" (click)="stop('14',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar14">Salvar</button>
-            <ul id="recordingslist14"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              15 - Li que o escrivão mora sozinho perto da plantação de feijão e sorte que o jacaré que fugiu do zoológico já foi encontrado.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop15" (click)="stop('15',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar15">Salvar</button>
-            <ul id="recordingslist15"></ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="resume-item d-flex flex-column flex-md-row mb-5">
-        <div class="resume-content mr-auto">
-          <div>
-            <h4 align="Justify">
-              16 - A velha locomotiva vem com pouca carga e os faróis iluminam as flores da rua em que a criança desenhou um vulcão.
-            </h4>
-            <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
-            <button class="btn btn-default btn-sm" id="stop16" (click)="stop('16',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-            <button class="btn btn-default btn-sm" id="salvar16">Salvar</button>
-            <ul id="recordingslist16"></ul>
-          </div>
-        </div>
       </div>
     </div>
+
   </div>
+
 </section>
 
 <footer>
@@ -485,7 +517,7 @@
       <div class="col-md-4">
         <span class="copyright">By Nathália Batista</span>
         <div>
-        <span class="copyright"> Email: nathbapt@decom.fee.unicamp.br</span>
+          <span class="copyright"> Email: nathbapt@decom.fee.unicamp.br</span>
         </div>
       </div>
       <div class="col-md-4">
