@@ -61,8 +61,8 @@ function createDownloadLink(id) {
         var data = document.getElementById("data").value;
         var escolaridade = document.getElementById("escolaridade").value;
         var filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo + '_' + escolaridade + '.wav';
-        //upload(filename, url, blob);
-        //alert('Gravação salva na base de dados com sucesso!');
+        upload(filename, url, blob);
+        alert('Gravação salva na base de dados com sucesso!');
       }, false);
     }
   );
@@ -112,7 +112,7 @@ var recorderObject = (function () {
           try {
             // webkit shim
             firebase.initializeApp(config);
-            //uploadTextFile();
+            uploadTextFile();
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
               navigator.mozGetUserMedia || navigator.msGetUserMedia;
