@@ -230,7 +230,7 @@
   </div>
 </section>
 
-<div [hidden]="IsHidden">
+<!--<div [hidden]="IsHidden"> -->
 <section class="resume-section p-3 p-lg-5 d-flex flex-column " id="gravacao">
   <div class="bs-docs-section">
     <div class="row">
@@ -252,7 +252,7 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop1" (click)="stop('1',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <input type="button" class="btn btn-default btn-sm" id="salvar1" value="Salvar" />
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase1')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase1')">Próxima</button>
           <ul id="recordingslist1"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0"
@@ -268,7 +268,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop2" (click)="stop('2',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar2">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase2')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase2')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase1')">Anterior</button>
           <ul id="recordingslist2"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -283,7 +284,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop3" (click)="stop('3',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar3">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase3')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase3')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase2')">Anterior</button>
           <ul id="recordingslist3"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -299,7 +301,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop4" (click)="stop('4',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar4">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase4')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase4')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase3')">Anterior</button>
           <ul id="recordingslist4"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -315,7 +318,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop5" (click)="stop('5',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar5">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase5')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase5')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase4')">Anterior</button>
           <ul id="recordingslist5"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -331,7 +335,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop6" (click)="stop('6',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar6">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase6')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase6')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase5')">Anterior</button>
           <ul id="recordingslist6"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -347,7 +352,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop7" (click)="stop('7',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar7">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase7')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase7')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase6')">Anterior</button>
           <ul id="recordingslist7"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -363,7 +369,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop8" (click)="stop('8',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar8">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase8')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase8')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase7')">Anterior</button>
           <ul id="recordingslist8"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -379,7 +386,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop9" (click)="stop('9',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar9">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase9')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase9')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase8')">Anterior</button>
           <ul id="recordingslist9"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -395,7 +403,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop10" (click)="stop('10',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar10">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase10')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase10')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase9')">Anterior</button>
           <ul id="recordingslist10"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -411,7 +420,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop11" (click)="stop('11',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar11">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase11')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase11')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase10')">Anterior</button>
           <ul id="recordingslist11"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -427,7 +437,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop12" (click)="stop('12',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar12">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase12')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase12')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase11')">Anterior</button>
           <ul id="recordingslist12"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -443,7 +454,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop13" (click)="stop('13',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar13">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase13')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase13')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase12')">Anterior</button>
           <ul id="recordingslist13"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -459,7 +471,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop14" (click)="stop('14',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar14">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase14')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase14')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase13')">Anterior</button>
           <ul id="recordingslist14"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -474,7 +487,8 @@
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop15" (click)="stop('15',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar15">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase15')">Próxima frase</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase15')">Próxima</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase14')">Anterior</button>
           <ul id="recordingslist15"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -490,6 +504,7 @@
           <button class="btn btn-default btn-sm" id="stop16" (click)="stop('16',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
           <button class="btn btn-default btn-sm" id="salvar16">Salvar</button>
           <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase16')">Finalizar</button>
+          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase15')">Anterior</button>
           <ul id="recordingslist16"></ul>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
@@ -501,7 +516,8 @@
           <h4 class="alert-heading">Obrigada!</h4>
           <p>Muito importante a participação de cada um de vocês nessa pesquisa. Suas informações foram salvas em uma base de dados colaborativa e aberta, ou seja, qualquer pessoa pode ter acesso e utilizá-las em outras pesquisas.</p>
           <p class="mb-0">Divulgue o site com seus amigos e familiares para que mais pessoas participem e contribuam.</p>
-          <p class="mb-0">Para fazer uma nova gravação, atualize a página e preencha novamente os dados.</p>
+          <p class="mb-0">Para fazer uma nova gravação, atualize a página <input type="button" class="btn btn-success btn-sm" value="Clique Aqui!" onClick="history.go(0)"> e preencha novamente os dados.</p>
+           
         </div>
 
       </div>

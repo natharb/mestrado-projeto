@@ -26,8 +26,6 @@ export class AppComponent implements OnInit {
   fraseOn: boolean;
   fraseOff: boolean;
 
-  currentPercentage: String;
-
   userForm: FormGroup;
 
   constructor(fb: FormBuilder) {
@@ -39,18 +37,6 @@ export class AppComponent implements OnInit {
       'escolaridade': '',
       'data': ''
     })
-
-    this.currentPercentage = '60';
-  }
-
-  sampleMethode(id) {
-    if (id == 'frase1') {
-      this.currentPercentage = '33.33';
-    } else if (status === 'inprogress') {
-      this.currentPercentage = '66.66';
-    } else {
-      this.currentPercentage = '100';
-    }
   }
 
   IsHidden = true;
@@ -68,6 +54,15 @@ export class AppComponent implements OnInit {
     }
   }
 
+  onSelectFraseVoltar(showBackDiv) {
+    for (let i = 2; i <= 17; i++) {
+      if (showBackDiv == 'frase' + (i-1)) {
+        document.getElementById("frase" + i).style.display = "none";
+        document.getElementById("frase" + (i - 1)).style.display = "block";
+      }
+    }
+  }
+  
   onSubmit(value: any): void {
     console.log('you submitted value:', value);
   }
