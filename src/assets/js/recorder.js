@@ -128,8 +128,7 @@
                             var dataview = encodeWAV(interleaved);
                             var audioBlob = new Blob([dataview], { type: type });
 
-                            self.postMessage({ command: 'exportWAV', data: audioBlob });
-                            
+                            self.postMessage({ command: 'exportWAV', data: audioBlob });                                                      
                         }
 
                         function getBuffer() {

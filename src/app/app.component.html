@@ -7,12 +7,12 @@
         <h3 class="section-subheading text-muted">Sabe-se que o desempenho de sistemas de reconhecimento de fala é afetado pelo sotaque do usuário, visto que a pronúncia
           de uma frase é alterada de acordo com a região de origem do falante. O sotaque que percebemos (escutamos) refere-se
           às características prosódicas e fonéticas, por exemplo, entonação, duração e segmentos definidos pelo país ou região
-          de um indivíduo. Ele pode ser também ser entendido como os traços melódicos da língua. Diante disso, o reconhecimento
-          de sotaque permite pré-selecionar modelos linguísticos, acústicos e lexicais adequados a cada região do falante
-          por meio da limitação do espaço de características, aumentando potencialmente o desempenho do sistema de reconhecimento
-          automático de locutor. As informações aqui obtidas serão utilizadas estritamente em pesquisas na área de reconhecimento
-          de fala. Essa aplicação visa obter grande número de amostras de voz para os diferentes sotaques brasileiros, que
-          serão utilizadas no projeto de Mestrado em Engenharia Elétrica na Universidade Estadual de Campinas (Unicamp).</h3>
+          de um indivíduo, também sendo entendido como os traços melódicos da língua. Diante disso, o reconhecimento de sotaque
+          permite pré-selecionar modelos linguísticos, acústicos e lexicais adequados a cada região do falante por meio da
+          limitação do espaço de características, aumentando potencialmente o desempenho do sistema de reconhecimento automático
+          de locutor. As informações aqui obtidas serão utilizadas estritamente em pesquisas na área de reconhecimento de
+          fala. Essa aplicação visa obter grande número de amostras de voz para os diferentes sotaques brasileiros, que serão
+          utilizadas no projeto de Mestrado em Engenharia Elétrica na Universidade Estadual de Campinas (Unicamp).</h3>
       </div>
     </div>
     <div class="row text-center">
@@ -95,8 +95,8 @@
               </div>
               <div class="timeline-body">
                 <p class="text-muted">Ao realizar a gravação, escute-a e verifique se a frase foi pronunciada corretamente e a voz está audível.
-                  Caso contrário, para gravar novamente pressione o botão "Iniciar Gravação" mais uma vez. Para salvar o áudio gravado, pressione
-                  "Salvar" para que a gravação seja armazenada na base de dados.</p>
+                  Caso contrário, para gravar novamente pressione o botão "Iniciar Gravação" mais uma vez. Para salvar o
+                  áudio gravado, pressione "Salvar" para que a gravação seja armazenada na base de dados.</p>
               </div>
             </div>
           </li>
@@ -140,16 +140,16 @@
 
           <div class="form-group" [ngClass]="{'has-error':!userForm.controls['idade'].valid && userForm.controls['idade'].touched}">
             <label>Idade</label>
-            <input id="idade" type="number" min="0" max="99" placeholder="Informe sua idade" class="form-control" [formControl]="userForm.controls['idade']"
+            <input id="idade" type="number" minlength="1" maxlength="100" placeholder="Informe sua idade" class="form-control" [formControl]="userForm.controls['idade']"
               name="idade">
-            <div *ngIf="userForm.controls['idade'].hasError('required') && userForm.controls['idade'].touched" class="alert alert-danger">Você deve informar sua idade.</div>
+            <div *ngIf="userForm.controls['idade'].hasError('required') && userForm.controls['idade'].touched" class="alert alert-danger">Você deve informar sua idade. (0-100)</div>
           </div>
 
           <div class="form-group" [ngClass]="{'has-error':!userForm.controls['cidade'].valid && userForm.controls['cidade'].touched}">
             <label>Cidade </label>
-            <input id="cidade" type="text" placeholder="Infome sua cidade" class="form-control" name="cidade" [formControl]="userForm.controls['cidade']">
+            <input id="cidade" type="text" placeholder="Infome sua cidade" pattern="[a-zA-Z][a-zA-Z ]+" class="form-control" name="cidade" [formControl]="userForm.controls['cidade']">
             <div *ngIf="userForm.controls['cidade'].hasError('required') && userForm.controls['cidade'].touched" class="alert alert-danger">Você deve informar a cidade.</div>
-            <span class="help-block">Não necessariamente a cidade onde reside ou nasceu, mas de onde você considera seu sotaque.</span>
+            <span class="help-block">Não necessariamente a cidade onde reside ou nasceu, mas de onde você considera seu sotaque. Apenas letras e espaço são permitidas nesse campo.</span>
           </div>
 
           <div class="form-group" [ngClass]="{'has-error':!userForm.controls['estado'].valid && userForm.controls['estado'].touched}">
@@ -230,7 +230,7 @@
   </div>
 </section>
 
-<div [hidden]="IsHidden">
+<!-- <div [hidden]="IsHidden"> -->
 <section class="resume-section p-3 p-lg-5 d-flex flex-column " id="gravacao">
   <div class="bs-docs-section">
     <div class="row">
@@ -251,13 +251,18 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop1" (click)="stop('1',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <input type="button" class="btn btn-default btn-sm" id="salvar1" value="Salvar" />
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase1')">Próxima</button>
-          <ul id="recordingslist1"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar1" value="Salvar"/>
+          <ol id="recordingslist1"></ol>
+
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0"
               aria-valuemax="100" style="width:6.25%"> 6.25%.
             </div>
+          </div>
+
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase1')">Próxima</button>
           </div>
         </div>
         <div id="frase2" style="display:none">
@@ -267,15 +272,22 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop2" (click)="stop('2',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar2">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase2')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase1')">Anterior</button>
-          <ul id="recordingslist2"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar2" value="Salvar"/>
+          <ol id="recordingslist2"></ol>
+
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:12.50%"> 12.50%.
             </div>
           </div>
+
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase1')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase2')">Próxima</button>
+            
+          </div>
+
         </div>
         <div id="frase3" style="display:none">
           <h4 align="Justify">
@@ -283,16 +295,21 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop3" (click)="stop('3',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar3">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase3')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase2')">Anterior</button>
-          <ul id="recordingslist3"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar3" value="Salvar"/>
+          <ol id="recordingslist3"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:18.75%"> 18.75%
             </div>
           </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase2')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase3')">Próxima</button>
+            
+          </div>
         </div>
+
         <div id="frase4" style="display:none">
           <h4 align="Justify">
             4- Suas atitudes são muito drásticas e resultarão em guerra entre vocês. Ela chegou a pedir o divórcio antes dele morrer
@@ -300,16 +317,21 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop4" (click)="stop('4',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar4">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase4')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase3')">Anterior</button>
-          <ul id="recordingslist4"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar4" value="Salvar"/>
+          <ol id="recordingslist4"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:25%"> 25%
             </div>
           </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase3')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase4')">Próxima</button>
+            
+          </div>
         </div>
+
         <div id="frase5" style="display:none">
           <h4 align="Justify">
             5 - Meu orientador disse que o professor de Português e a professora de Matemática se casaram e foram morar na Nigéria, onde
@@ -317,16 +339,22 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop5" (click)="stop('5',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar5">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase5')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase4')">Anterior</button>
-          <ul id="recordingslist5"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar5" value="Salvar"/>
+
+          <ol id="recordingslist5"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:31.25%"> 31.25%
             </div>
           </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase4')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase5')">Próxima</button>
+            
+          </div>
         </div>
+
         <div id="frase6" style="display:none">
           <h4 align="Justify">
             6 - Você tem razão, a correção da prova não foi justa e a turma tirou notas abaixo da média. Assim como a gestão do atual
@@ -334,48 +362,64 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop6" (click)="stop('6',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar6">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase6')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase5')">Anterior</button>
-          <ul id="recordingslist6"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar6" value="Salvar"/>
+
+          <ol id="recordingslist6"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:37.50%"> 37.50%
             </div>
           </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase5')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase6')">Próxima</button>
+            
+          </div>
         </div>
+
         <div id="frase7" style="display:none">
           <h4 align="Justify">
             7 - Tenho aptidão para tirar fotos de motos e guitarras, então recebi em dólar e comprei um carro, jóias e relógios para
-            nós. A atriz teve uma ótima atua- ção no espetáculo e recebeu meus parabéns e um presente pela apresentação fantástica.
+            nós. A atriz teve uma ótima atuação no espetáculo e recebeu meus parabéns e um presente pela apresentação fantástica.
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop7" (click)="stop('7',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar7">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase7')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase6')">Anterior</button>
-          <ul id="recordingslist7"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar7" value="Salvar"/>
+
+          <ol id="recordingslist7"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:43.75%"> 43.75%
             </div>
           </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase6')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase7')">Próxima</button>
+            
+          </div>
         </div>
         <div id="frase8" style="display:none">
           <h4 align="Justify">
             8 - Eu criei muita expectativa nesse trabalho. O chefe não ouviu meu clamor, continuou sorrindo para mim e segurando a colher
-            estava suja de abacate ele disse: "A palavra caçador se escreve com C cedilha".
+            que estava suja de abacate, ele disse: "A palavra caçador se escreve com C cedilha".
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop8" (click)="stop('8',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar8">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase8')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase7')">Anterior</button>
-          <ul id="recordingslist8"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar8" value="Salvar"/>
+
+          <ol id="recordingslist8"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:50%"> 50%
             </div>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase7')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase8')">Próxima</button>
+            
           </div>
         </div>
         <div id="frase9" style="display:none">
@@ -385,14 +429,19 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop9" (click)="stop('9',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar9">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase9')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase8')">Anterior</button>
-          <ul id="recordingslist9"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar9" value="Salvar"/>
+
+          <ol id="recordingslist9"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:56.25%"> 56.25%
             </div>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase8')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase9')">Próxima</button>
+            
           </div>
         </div>
         <div id="frase10" style="display:none">
@@ -402,14 +451,19 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop10" (click)="stop('10',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar10">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase10')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase9')">Anterior</button>
-          <ul id="recordingslist10"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar10" value="Salvar"/>
+
+          <ol id="recordingslist10"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:62.5%"> 62.5%
             </div>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase9')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase10')">Próxima</button>
+           
           </div>
         </div>
         <div id="frase11" style="display:none">
@@ -419,14 +473,19 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop11" (click)="stop('11',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar11">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase11')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase10')">Anterior</button>
-          <ul id="recordingslist11"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar11" value="Salvar"/>
+
+          <ol id="recordingslist11"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:68.75%"> 68.75%
             </div>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase10')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase11')">Próxima</button>
+            
           </div>
         </div>
         <div id="frase12" style="display:none">
@@ -436,14 +495,19 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop12" (click)="stop('12',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar12">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase12')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase11')">Anterior</button>
-          <ul id="recordingslist12"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar12" value="Salvar"/>
+
+          <ol id="recordingslist12"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:75%"> 75%
             </div>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase11')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase12')">Próxima</button>
+            
           </div>
         </div>
         <div id="frase13" style="display:none">
@@ -453,14 +517,19 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop13" (click)="stop('13',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar13">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase13')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase12')">Anterior</button>
-          <ul id="recordingslist13"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar13" value="Salvar"/>
+
+          <ol id="recordingslist13"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:81.25%"> 81.25%
             </div>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase12')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase13')">Próxima</button>
+            
           </div>
         </div>
         <div id="frase14" style="display:none">
@@ -470,14 +539,19 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop14" (click)="stop('14',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar14">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase14')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase13')">Anterior</button>
-          <ul id="recordingslist14"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar14" value="Salvar"/>
+
+          <ol id="recordingslist14"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:87.5%"> 87.5%
             </div>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase13')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase14')">Próxima</button>
+           
           </div>
         </div>
         <div id="frase15" style="display:none">
@@ -486,14 +560,19 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop15" (click)="stop('15',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar15">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase15')">Próxima</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase14')">Anterior</button>
-          <ul id="recordingslist15"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar15" value="Salvar"/>
+
+          <ol id="recordingslist15"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:93.75%"> 93.75%
             </div>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase14')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase15')">Próxima</button>
+            
           </div>
         </div>
         <div id="frase16" style="display:none">
@@ -502,22 +581,29 @@
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start(this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
           <button class="btn btn-default btn-sm" id="stop16" (click)="stop('16',this);" [ngClass]='{disabled: isOff}'>Parar Gravação</button>
-          <button class="btn btn-default btn-sm" id="salvar16">Salvar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase16')">Finalizar</button>
-          <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase15')">Anterior</button>
-          <ul id="recordingslist16"></ul>
+          <input type="button" class="btn btn-default btn-sm" id="salvar16" value="Salvar"/>
+
+          <ol id="recordingslist16"></ol>
           <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0"
               aria-valuemax="100" style="width:100%"> Concluído 100%
             </div>
           </div>
+          <div>
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFraseVoltar('frase15')">Anterior</button>
+            <button class="btn btn-primary btn-sm" (click)="onSelectFrase('frase16')">Finalizar</button>
+            
+          </div>
         </div>
         <div id="frase17" style="display:none" class="alert alert-info" role="alert">
           <h4 class="alert-heading">Obrigada!</h4>
-          <p>Muito importante a participação de cada um de vocês nessa pesquisa. Suas informações foram salvas em uma base de dados colaborativa e aberta, ou seja, qualquer pessoa pode ter acesso e utilizá-las em outras pesquisas.</p>
+          <p>Muito importante a participação de cada um de vocês nessa pesquisa. Suas informações foram salvas em uma base de
+            dados colaborativa e aberta, ou seja, qualquer pessoa pode ter acesso e utilizá-las em outras pesquisas.</p>
           <p class="mb-0">Divulgue o site com seus amigos e familiares para que mais pessoas participem e contribuam.</p>
-          <p class="mb-0">Para fazer uma nova gravação, atualize a página <input type="button" class="btn btn-success btn-sm" value="Clique Aqui!" onClick="history.go(0)"> e preencha novamente os dados.</p>
-           
+          <p class="mb-0">Para fazer uma nova gravação, atualize a página
+            <input type="button" class="btn btn-success btn-sm" value="Clique Aqui!" onClick="history.go(0)"> e preencha novamente os dados.</p>
+
         </div>
 
       </div>

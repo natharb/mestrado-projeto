@@ -22,38 +22,34 @@ function startRecording(button) {
   recorder && recorder.record();
 }
 
-function stopRecording(button, id) {
+function stopRecording(button, id, count) {
   recorder && recorder.stop();
-  // create WAV download link using audio data blob
-  createDownloadLink(id);
-  recorder.clear();
+  createDownloadLink(id,count);  
 }
 
-function createDownloadLink(id) {
-  // Start file download.
+function createDownloadLink(id, count) {
+  
   recorder && recorder.exportWAV(
     function (blob) {
-      var url = URL.createObjectURL(blob);
-      var pai1 = document.getElementById('recordingslist' + id);
-      var liId = document.getElementById("li" + id);
       
-      if (liId != undefined) {
-       pai1.removeChild(liId);
-      }
+      var lista = document.getElementById('recordingslist' + id);
+      var item = document.getElementById("li" + id);
+      var url = URL.createObjectURL(blob);
+
       var li = document.createElement('span');
       var audioEl = document.createElement('audio');
-      //var hf = document.createElement('a');
       audioEl.controls = true;
       audioEl.src = url;
-      //hf.href = url;
-      //hf.innerHTML = hf.download;
       li.appendChild(audioEl);
       li.setAttribute("id", "li" + id);
-      //li.appendChild(hf);
-      pai1.appendChild(li);
-      //document.getElementById('recordingslist' + id).appendChild(li);
+      lista.appendChild(li);
 
-      document.getElementById("salvar" + id).addEventListener("click", function () {
+      if (item != undefined) {
+        lista.removeChild(item);
+        
+       }
+       recorder && recorder.clear();
+       document.getElementById("salvar" + id).addEventListener("click", function () {
         var idade = document.getElementById('idade').value;
         var cidade = document.getElementById('cidade').value;
         var estado = document.getElementById('estado').value;
@@ -61,8 +57,9 @@ function createDownloadLink(id) {
         var data = document.getElementById("data").value;
         var escolaridade = document.getElementById("escolaridade").value;
         var filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo + '_' + escolaridade + '.wav';
-        upload(filename, url, blob);
-        alert('Gravação salva na base de dados com sucesso!');
+        var teste = document.getElementById("li" + id);            
+        upload(filename, teste.lastChild.src, blob,count);
+        
       }, false);
     }
   );
@@ -86,7 +83,7 @@ function uploadTextFile() {
         let uploadTaskTextFile = firebase.storage().ref();
         var refTextFile = uploadTaskTextFile.child(`${transactionId + '_' + "deviceType"}`);
         refTextFile.put(blobFileText).then(function (snapshot) {
-          console.log('Frase salva na base de dados com sucesso!');
+          console.log('Arquivo de texto salvo na base de dados com sucesso!');
         });
       }
       );
@@ -94,13 +91,12 @@ function uploadTextFile() {
     .catch(e => console.log(e));
 }
 
-function upload(filename, url, blob) {
+function upload(filename, url, blob,count) {
 
   let uploadTask = firebase.storage().ref();
   var thisRef = uploadTask.child(`${transactionId + '_' + filename}`);
-  thisRef.put(blob).then(function (snapshot) {
-    console.log('Upload do arquivo de audio!');
-  });
+
+  thisRef.put(blob);
 }
 
 var recorderObject = (function () {
@@ -112,11 +108,11 @@ var recorderObject = (function () {
           try {
             // webkit shim
             firebase.initializeApp(config);
-            uploadTextFile();
+            //uploadTextFile();
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
               navigator.mozGetUserMedia || navigator.msGetUserMedia;
-              
+
             window.URL = window.URL || window.webkitURL;
 
             audio_context = new AudioContext;

@@ -6,12 +6,11 @@ import { AngularFireAuth } from 'angularfire2/auth'
 import { AngularFireDatabase } from 'angularfire2/database'
 import * as firebase from 'firebase/app'
 import 'firebase/storage'
-//import {UserData} from './user.model';
 import { Observable } from "rxjs";
 var $: any;
 declare var recorderObject: any;
 declare function startRecording(button): void;
-declare function stopRecording(button, id): void;
+declare function stopRecording(button, id,count): void;
 
 @Component({
   selector: 'app-root',
@@ -23,14 +22,13 @@ export class AppComponent implements OnInit {
   isOn: boolean;
   isOff: boolean;
 
-  fraseOn: boolean;
-  fraseOff: boolean;
+  count:number = 0; //inicializando o contador.
 
   userForm: FormGroup;
 
   constructor(fb: FormBuilder) {
     this.userForm = fb.group({
-      'idade': [null, Validators.required],
+      'idade': [null, [Validators.required, Validators.min(1),Validators.max(100)]],
       'estado': [null, Validators.required],
       'cidade': [null, Validators.required],
       'sexo': [null, Validators.required],
@@ -80,9 +78,11 @@ export class AppComponent implements OnInit {
   }
 
   public stop(id, button) {
-    stopRecording(button, id);
+    this.count +=1;
+    stopRecording(button, id,this.count);
     this.isOn = false;
     this.isOff = true;
   }
+  
 }
 
