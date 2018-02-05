@@ -1,6 +1,8 @@
 var audio_context;
 var recorder;
 
+var currentBlob = null;
+
 var transactionId = '_' + Math.random().toString(36).substr(2, 9);
 console.log(transactionId);
 
@@ -18,51 +20,54 @@ function startUserMedia(stream) {
   recorder = new Recorder(input);
 }
 
-function startRecording(button) {
+function startRecording(button, id) {
   recorder && recorder.record();
 }
 
 function stopRecording(button, id, count) {
   recorder && recorder.stop();
-  createDownloadLink(id,count);  
+  createDownloadLink(id, count);
+  //recorder && recorder.clear();
 }
 
 function createDownloadLink(id, count) {
-  
+
   recorder && recorder.exportWAV(
     function (blob) {
-      
-      var lista = document.getElementById('recordingslist' + id);
-      var item = document.getElementById("li" + id);
+      currentBlob = blob;
       var url = URL.createObjectURL(blob);
+      var lista = document.getElementById('recordingslist' + id);
+      var item = document.getElementById("audio" + id);
 
-      var li = document.createElement('span');
-      var audioEl = document.createElement('audio');
-      audioEl.controls = true;
-      audioEl.src = url;
-      li.appendChild(audioEl);
-      li.setAttribute("id", "li" + id);
-      lista.appendChild(li);
+      if (count > 1) {
+        if (lista.hasChildNodes()) {
+          lista.removeChild(lista.childNodes[0]);
+          URL.revokeObjectURL(blob);
+        }
+      }
+        recorder && recorder.clear();
 
-      if (item != undefined) {
-        lista.removeChild(item);
-        
-       }
-       recorder && recorder.clear();
-       document.getElementById("salvar" + id).addEventListener("click", function () {
-        var idade = document.getElementById('idade').value;
-        var cidade = document.getElementById('cidade').value;
-        var estado = document.getElementById('estado').value;
-        var sexo = document.querySelector('input[name="sexo"]:checked').value;
-        var data = document.getElementById("data").value;
-        var escolaridade = document.getElementById("escolaridade").value;
-        var filename = 'frase' + '_' + id + '_' + data + '_' + idade + '_' + cidade + '_' + estado + '_' + sexo + '_' + escolaridade + '.wav';
-        var teste = document.getElementById("li" + id);            
-        upload(filename, teste.lastChild.src, blob,count);
-        
-      }, false);
-    }
-  );
+        //var li = document.createElement('span');
+        var audioEl = document.createElement('audio');
+        audioEl.controls = true;
+        audioEl.src = url;
+        //li.appendChild(audioEl);
+        audioEl.setAttribute("id", "audio" + id);
+        lista.appendChild(audioEl);
+        console.log(lista.firstChild);
+        document.getElementById("salvar" + id).addEventListener("click", function () {
+          var idade = document.getElementById('idade').value;
+          var cidade = document.getElementById('cidade').value;
+          var estado = document.getElementById('estado').value;
+          var sexo = document.querySelector('input[name="sexo"]:checked').value;
+          var data = document.getElementById("data").value;
+          var escolaridade = document.getElementById("escolaridade").value;
+          var filename = 'frase' + '_' + id + '_' + data + '_' + idade.replace(/\s/g, '') + '_' + cidade.replace(/\s/g, '') + '_' + estado.replace(/\s/g, '') + '_' + sexo.replace(/\s/g, '') + '_' + escolaridade.replace(/\s/g, '') + '.wav';
+          console.log("Fazendo Upload do Audio");
+          upload(filename, url, currentBlob);
+        }, false);
+      }
+    );
 }
 
 function uploadTextFile() {
@@ -91,11 +96,9 @@ function uploadTextFile() {
     .catch(e => console.log(e));
 }
 
-function upload(filename, url, blob,count) {
-
+function upload(filename, url, blob) {
   let uploadTask = firebase.storage().ref();
   var thisRef = uploadTask.child(`${transactionId + '_' + filename}`);
-
   thisRef.put(blob);
 }
 
@@ -108,7 +111,7 @@ var recorderObject = (function () {
           try {
             // webkit shim
             firebase.initializeApp(config);
-            //uploadTextFile();
+            uploadTextFile();
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
               navigator.mozGetUserMedia || navigator.msGetUserMedia;

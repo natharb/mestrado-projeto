@@ -108,6 +108,7 @@
                         }
 
                         function record(inputBuffer) {
+                            //console.log(numChannels);
                             for (var channel = 0; channel < numChannels; channel++) {
                                 recBuffers[channel].push(inputBuffer[channel]);
                             }
@@ -115,6 +116,7 @@
                         }
 
                         function exportWAV(type) {
+                            //console.log(recLength + " COMECO");
                             var buffers = [];
                             for (var channel = 0; channel < numChannels; channel++) {
                                 buffers.push(mergeBuffers(recBuffers[channel], recLength));
@@ -137,7 +139,6 @@
                                 buffers.push(mergeBuffers(recBuffers[channel], recLength));
                             }
                             self.postMessage({ command: 'getBuffer', data: buffers });
-                            console.log(data);
                         }
 
                         function clear() {

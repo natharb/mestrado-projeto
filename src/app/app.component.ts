@@ -9,7 +9,7 @@ import 'firebase/storage'
 import { Observable } from "rxjs";
 var $: any;
 declare var recorderObject: any;
-declare function startRecording(button): void;
+declare function startRecording(button,id): void;
 declare function stopRecording(button, id,count): void;
 
 @Component({
@@ -71,8 +71,8 @@ export class AppComponent implements OnInit {
     recorderObject.recorder();
   }
 
-  public start(button) {
-    startRecording(button);
+  public start(id,button) {
+    startRecording(button,id);
     this.isOn = true;
     this.isOff = false;
   }
