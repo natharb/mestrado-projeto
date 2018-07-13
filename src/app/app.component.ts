@@ -11,6 +11,7 @@ var $: any;
 declare var recorderObject: any;
 declare function startRecording(button,id): void;
 declare function stopRecording(button, id,count): void;
+declare function saveTerm(name): void;
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,23 @@ export class AppComponent implements OnInit {
   count:number = 0; //inicializando o contador.
 
   userForm: FormGroup;
+
+
+
+  term = {
+    isOpen: false,
+    body: null,
+    open: function (){
+      this.isOpen = true;
+      this.body.classList.add("hide-overflow");
+    },
+    close: function (){
+      this.isOpen = false;
+      this.body.classList.remove("hide-overflow");
+    },
+    withError: false,
+    value: ""
+  }
 
   constructor(fb: FormBuilder) {
     this.userForm = fb.group({
@@ -69,6 +87,8 @@ export class AppComponent implements OnInit {
     this.isOn = false;
     this.isOff = true;
     recorderObject.recorder();
+    this.term.body = document.getElementsByTagName('body')[0];
+    this.term.open();
   }
 
   public start(id,button) {
@@ -83,6 +103,16 @@ export class AppComponent implements OnInit {
     this.isOn = false;
     this.isOff = true;
   }
+
+  confirmTerm(){
+    if(this.term.value != ""){
+      saveTerm(this.term.value);
+      this.term.close();
+    }else{
+      this.term.withError = true;
+    }
+  }
+   
   
 }
 

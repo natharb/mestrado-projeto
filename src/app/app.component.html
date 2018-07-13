@@ -340,7 +340,7 @@
 
         <div id="frase5" style="display:none">
           <h4 align="Justify">
-            5 - Meu orientador disse que o professor de Português e a professora de Matemática se casaram e foram morar na Nigéria, onde
+            5 - Meu orientador disse que o professor de Português e a professora de Matemática se casaram e foram morar na Nigéria, onde o
             clima está muito diferente de dez anos atrás.
           </h4>
           <button class="btn btn-default btn-sm" id="record" (click)="start('5',this);" [ngClass]='{disabled: isOn}'>Iniciar Gravação</button>
@@ -617,6 +617,8 @@
 
   </div>
 
+
+
 </section>
 </div>
 
@@ -641,3 +643,124 @@
     </div>
   </div>
 </footer>
+
+
+<div [hidden]="!term.isOpen" class="modal-term">
+
+    <div class="container text-justify">
+
+      <div class="header">
+          <b>TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO</b>
+      </div>
+
+      <div class="content">
+         
+      
+        <b><p>Título da pesquisa: Reconhecimento Automático do Sotaques em
+        Sistemas de Fala</p></b>
+        <b><p>Nome do(s) responsável(is) Nathália Alves Rocha Batista</p></b>
+        <b><p>Número do CAAE: 82825417.6.0000.5404</p></b>
+        <p>Você está sendo convidado a participar como voluntário de uma
+        pesquisa. Este documento, chamado Termo de Consentimento Livre e
+        Esclarecido, visa assegurar seus direitos como participante.
+        Por favor, leia com atenção e calma, aproveitando para esclarecer
+        suas dúvidas. Se houver perguntas antes ou mesmo depois de assiná-lo,
+        você poderá esclarecê-las com o pesquisador. Não haverá nenhum tipo de
+        penalização ou prejuízo se você não aceitar participar ou retirar sua
+        autorização em qualquer momento.</p>
+        <b><p>Justificativa e objetivos:</p></b>
+        <p>O propósito da pesquisa é identificar os sotaques regionais em
+        sistemas de fala, visto que as variações acústicas e prosódicas da língua
+        podem impactar um sistema de reconhecimento, caso tais características
+        não sejam modeladas corretamente. Um sistema só é capaz de modelar
+        dados a patir de outros dados já disponíveis, por isso a necessidade de
+        confeccionar uma base de dados caracterizando as variações regionais da
+        fala do Português Brasileiro. O objetivo final é construir e disponibilizar uma
+        base de dados da fala de diversas regioões do Brasil, para fins de pesquisa.</p>
+        <b><p>Procedimentos:</p></b>
+        <p>Participando do estudo você está sendo convidado a preencher um
+        formulário com informações sobre idade, cidade, estado e grau de
+        escolaridade. Após essa etapa, você deve ler e pronúnciar uma sequência
+        de 16 frases, que serão identificadas com as informações provenientes do
+        formulário e salvas automaticamente a base de dados.</p>
+        <b><p>Desconfortos e riscos:</p></b>
+        <p>A coleta de dados é online e rápida, em média 8 minutos para leitura
+        das instruções e gravação das elocuções. Não há desconforto evidente.
+        As informações de idade, cidade, estado e grau de escolaridade serão
+        utilizadas unicamente para identificar/diferenciar os arquivos na base de
+        dados e não para identificar a própria pessoa no sistema biométrico.
+        As amostras de voz coletadas não serão utilizadas para identificação
+        do indivíduo e não serão disponibilizadas para terceiros.</p>
+        <b><p>Benefícios:</p></b>
+        <p>Não há benefícios para os participantes da pesquisa.
+        Os   benefícios   desta   pesquisa   estão   associados   ao
+        conhecimento   sobre   o   impacto   das   variações   regionais   em   sistemas   de
+        reconhecimento de fala pela comunidade acadêmica ou por quem se interessar sobre
+        estudos em processamento de fala.</p>
+        <b><p> Acompanhamento e assistência:</p></b>
+        <p>A coleta de dados é online e qualquer pessoa pode acessar usando
+        um computador pessoal, e pode ser realizada em qualquer momento, sem
+        impactdar sua rotina de vida. A aplicação Web disponibiliza um passo a passo com instruções para gravação. Em caso de dúvida, poderá enviar
+        email para nathbapt@decom.fee.unicamp.br</p>
+
+        <b><p>Sigilo e privacidade:</p></b>
+        <p>Você tem a garantia de que sua identidade será mantida em sigilo e
+        nenhuma
+        informação será dada a outras pessoas que não façam parte da equipe de
+        pesquisadores. Na
+        divulgação dos resultados desse estudo, seu nome não será citado.</p>
+        <b><p>Ressarcimento e Indenização:</p></b>
+        <p>A pesquisa é online. Não há necessidade de locomoção ou outro gasto
+        evidente.</p>
+        <b><p>Armazenamento de material:</p></b>
+        <p>As amostras de voz coletadas serão armazenadas por tempo
+        indeterminado em uma base de dados para fins de pesquisa na área de
+        reconhecimento de fala.</p>
+        <b><p>Contato:</p></b>
+        <p>Em caso de dúvidas sobre a pesquisa, você poderá entrar em contato
+        com a pesquisadora Nathália Alves Rocha Batista, Rua Albert Einstein 400
+        Faculdade de Engenharia Elétrica e Computação, Departamento de
+        Comunicações, e-mail: nathbapt@decom.fee.unicamp.br .
+        Em caso de denúncias ou reclamações sobre sua participação e sobre
+        questões éticas do estudo, você poderá entrar em contato com a secretaria
+        do Comitê de Ética em Pesquisa (CEP) da UNICAMP das 08:30hs às 11:30hs
+        e das 13:00hs as 17:00hs na Rua: Tessália Vieira de Camargo, 126; CEP
+        13083-887 Campinas – SP; telefone (19) 3521-8936 ou (19) 3521-7187; email:
+        cep@fcm.unicamp.br.</p>
+        <b><p>O Comitê de Ética em Pesquisa (CEP).</p></b>
+        <p>O papel do CEP é avaliar e acompanhar os aspectos éticos de todas as
+        pesquisas envolvendo seres humanos. A Comissão Nacional de Ética em
+        Pesquisa (CONEP), tem por objetivo desenvolver a regulamentação sobre
+        proteção dos seres humanos envolvidos nas pesquisas. Desempenha um
+        papel coordenador da rede de Comitês de Ética em Pesquisa (CEPs) das
+        instituições, além de assumir a função de órgão consultor na área de ética
+        em pesquisas</p>
+        <b><p>Consentimento livre e esclarecido:</p></b>
+        <p>Após ter recebido esclarecimentos sobre a natureza da pesquisa, seus
+        objetivos, métodos, benefícios previstos, potenciais riscos e o incômodo que
+        esta possa acarretar, aceito participar:</p>
+
+      </div>
+
+      <div class="footer">
+        <div class="row">
+          <div class="col-lg-10">
+            
+              <div class="form-group has-error has-feedback">
+                  <input type="text" class="form-control error-input" 
+                  placeholder="Preencha seu nome"
+                  [ngClass]="{'error-input': term.withError}"
+                  (focus)=" term.withError = false"
+                  [(ngModel)]="term.value">
+              </div>
+
+          </div><!-- /.col-lg-6 -->
+          <div class="col-lg-2">
+            <button class="btn btn-primary btn-block" (click)="confirmTerm()">Confirmar</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+</div>

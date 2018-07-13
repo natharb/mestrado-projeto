@@ -70,6 +70,11 @@ function createDownloadLink(id, count) {
     );
 }
 
+function saveTerm(name){
+  var database = firebase.database();
+  firebase.database().ref('users_terms/' + transactionId).set(name);
+}
+
 function uploadTextFile() {
 
   if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {

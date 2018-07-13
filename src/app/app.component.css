@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+.modal-term{
+    position: absolute !important;
+    z-index: 99999999 !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-term .container{
+    background: white;
+    width: 80%;
+    height: 95%;
+    margin: 0 auto;
+    -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+
+.modal-term .header{
+    text-align: center;
+    padding: 30px;
+}
+
+.modal-term .content{
+    padding: 30px;
+    width: 100%;
+    max-height: 65%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.modal-term .footer{
+    padding: 30px 30px 20px 30px;
+}
+
+.error-input{
+    border-color: red;
+}
